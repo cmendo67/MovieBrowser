@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import MovieSearch from './screens/MovieSearch'
+import Movie_Info from './screens/Movie_Info'
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer >
+      <Stack.Navigator >
+        <Stack.Screen
+            name="MovieSearch" 
+            component={MovieSearch} 
+            options= {{ title:'Movie Browser App',
+              headerStyle: {
+                backgroundColor: '#0d1419',
+              },
+              headerTintColor: '#cccccc',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+         />
+         <Stack.Screen name = "MovieDetails" 
+          component = {Movie_Info} 
+          options={{ title: 'Movie Inforamtion',
+              headerStyle: {
+                backgroundColor: '#0d1419',
+              },
+              headerTintColor: '#cccccc',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+           />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
